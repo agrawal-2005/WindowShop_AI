@@ -15,13 +15,11 @@ def crop_object(image_path, x, y, crop_size=100):
     image = Image.open(image_path).convert("RGB")
     width, height = image.size
 
-    # Calculate the crop coordinates
     left = x - crop_size // 2
     top = y - crop_size // 2
     right = x + crop_size // 2
     bottom = y + crop_size // 2
 
-    # Ensure the crop coordinates are within the image boundaries
     left = max(0, left)
     top = max(0, top)
     right = min(width, right)
@@ -30,10 +28,6 @@ def crop_object(image_path, x, y, crop_size=100):
     # Crop the image
     cropped_image = image.crop((left, top, right, bottom))
     return cropped_image
-
-
-
-
 
 @app.route('/')
 def index():

@@ -8,12 +8,62 @@
 }
 body {
   min-height: 100vh;
-  background: #E3F2FD;
+  background: black;
 }
 body, .container, .video-controls, .video-timer, .options {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.button-64 {
+
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 5px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+}
+
+.button-64 span {
+  background-color: rgb(5, 6, 45);
+  padding: 10px 15px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.button-64:hover span {
+  background: none;
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 24px;
+    min-width: 196px;
+  }
 }
 .main-container {
   display: flex;
@@ -22,6 +72,11 @@ body, .container, .video-controls, .video-timer, .options {
   gap: 10px; /* Space between the video container and sidebar */
 }
 .container {
+  left:70px;
+  top:5%;
+  border-radius: 25px;
+  border-color: white;
+  border-style: solid;
   width: 100%;
   user-select: none;
   overflow:hidden;
@@ -275,9 +330,9 @@ body, .container, .video-controls, .video-timer, .options {
   align-items:center;
   gap: 90px;
   /* Add positioning and styling for the sidebar */
-  height: 503px;
+  height: 510px;
   position: absolute;
-  top: 50%;
+  top: 41%;
   right: 150px;
   transform: translateY(-50%);
   background-color: rgba(255, 255, 255, 0.8);
