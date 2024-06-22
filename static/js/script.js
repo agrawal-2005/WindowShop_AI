@@ -207,23 +207,25 @@ document.addEventListener('DOMContentLoaded', function() {
     function populateProductList(products) {
         productList.innerHTML = ''; // Clear existing product list
 
-        products.forEach(product => {
-            const listItem = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = product.link;
-            link.target = '_blank'; // Open links in a new tab or window
+    // Loop through only the first 4 items or fewer if products.length < 4
+    for (let i = 0; i < Math.min(4, products.length); i++) {
+        const product = products[i];
 
-            const img = document.createElement('img');
-            // console.log("DSCDSCDSCD",product.image)
-            img.src = product.image;
-            img.alt = product.name;
-            img.style.width = '100px'; // Adjust the width as needed
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = product.link;
+        link.target = '_blank'; // Open links in a new tab or window
 
-            link.appendChild(img);
-            listItem.appendChild(link);
-            productList.appendChild(listItem);
-        });
+        const img = document.createElement('img');
+        img.src = product.image;
+        img.alt = product.name;
+        img.style.width = '100px'; // Adjust the width as needed
+
+        link.appendChild(img);
+        listItem.appendChild(link);
+        productList.appendChild(listItem);
     }
+}
 
     function showSidebar() {
         sidebar.classList.add('show');

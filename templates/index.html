@@ -62,14 +62,16 @@
   
       <form id="upload-form">
         <input type="file" id="video" name="video" accept="video/*" required>
-        <div id="uploading-message" style="display: none;">Uploading...</div>
-        <button type="submit">Upload Video</button>
+        <div id="uploading-message" style="display: none;">......</div>
+        <button type="submit" class="button-64" role="button"><span class="text">Upload</span></button>
       </form>
-      <button id="play-existing-video">Play Existing Video</button>
+      <button id="play-existing-video" class="button-64" role="button"><span class="text">Play Existing Video</span></button>
       <div class="sidebar">
-        <ul id="product-list"></ul>
+        <p>Detected Products<br>
+        <ul id="product-list"></ul></p>
+
       </div>
-      <button id="capture-button">Capture Frame and Coordinates</button>
+      <button id="capture-button" class="button-64" role="button"><span class="text">Detect Objects</span></button>
   </div>
   <script src="../static/js/script.js"></script>
 </body>
