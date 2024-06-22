@@ -212,7 +212,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const link = document.createElement('a');
             link.href = product.link;
             link.target = '_blank'; // Open links in a new tab or window
-            link.textContent = product.name;
+
+            const img = document.createElement('img');
+            // console.log("DSCDSCDSCD",product.image)
+            img.src = product.image;
+            img.alt = product.name;
+            img.style.width = '100px'; // Adjust the width as needed
+
+            link.appendChild(img);
             listItem.appendChild(link);
             productList.appendChild(listItem);
         });

@@ -72,7 +72,7 @@ def hower_image_similarity(image_path, x_coordi, y_coordi):
     load_models()
 
     products = [] 
-    dataset_folder = 'dataset'
+    dataset_folder = 'static/dataset'
     metadata_file = os.path.join(dataset_folder, 'metadata.json')
     with open(metadata_file, 'r') as f:
         metadata = json.load(f)

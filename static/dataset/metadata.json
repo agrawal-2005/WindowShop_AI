@@ -3,183 +3,183 @@
         "filename": "pr1.png",
         "product_name": "tie",
         "product_url": "https://amzn.in/d/3AOCWVL",
-        "image_url": "dataset/images/pr1.png"
+        "image_url": "static/dataset/images/pr1.png"
 
     },
     {
         "filename": "pr2.png",
         "product_name": "tie",
         "product_url": "https://amzn.in/d/hKLAlvD",
-        "image_url": "dataset/images/pr2.png"
+        "image_url": "static/dataset/images/pr2.png"
     
     },
     {
         "filename": "pr3.png",
         "product_name": "tie",
         "product_url": "https://amzn.in/d/9ugujRJ",
-        "image_url": "dataset/images/pr3.png"
+        "image_url": "static/dataset/images/pr3.png"
     },
     {
         "filename": "pr4.png",
         "product_name": "dirty_yellow_shirt",
         "product_url": "https://amzn.in/d/3AOCWVL",
-        "image_url": "dataset/images/pr4.png"
+        "image_url": "static/dataset/images/pr4.png"
     },
     {
         "filename": "pr5.png",
         "product_name": "dirty_yellow_shirt",
         "product_url": "https://amzn.in/d/hKLAlvD",
-        "image_url": "dataset/images/pr5.png"
+        "image_url": "static/dataset/images/pr5.png"
     },
     {
         "filename": "pr6.png",
         "product_name": "dirty_yellow_shirt",
         "product_url": "https://amzn.in/d/9ugujRJ",
-        "image_url": "dataset/images/pr6.png"
+        "image_url": "static/dataset/images/pr6.png"
     },
     {
         "filename": "pr7.png",
         "product_name": "Basket",
         "product_url": "https://amzn.in/d/3AOCWVL",
-        "image_url": "dataset/images/pr7.png"
+        "image_url": "static/dataset/images/pr7.png"
     },
     {
         "filename": "pr8.png",
         "product_name": "Basket",
         "product_url": "https://amzn.in/d/hKLAlvD",
-        "image_url": "dataset/images/pr8.png"
+        "image_url": "static/dataset/images/pr8.png"
     },
     {
         "filename": "pr9.png",
         "product_name": "Basket",
         "product_url": "https://amzn.in/d/9ugujRJ",
-        "image_url": "dataset/images/pr9.png"
+        "image_url": "static/dataset/images/pr9.png"
     },
     {
         "filename": "pr10.png",
         "product_name": "Blue shirt",
         "product_url": "https://amzn.in/d/3AOCWVL",
-        "image_url": "dataset/images/pr10.png"
+        "image_url": "static/dataset/images/pr10.png"
     },
     {
         "filename": "pr11.png",
         "product_name": "Blue shirt",
         "product_url": "https://amzn.in/d/hKLAlvD",
-        "image_url": "dataset/images/pr11.png"
+        "image_url": "static/dataset/images/pr11.png"
     },
     {
         "filename": "pr12.png",
         "product_name": "Blue shirt",
         "product_url": "https://amzn.in/d/9ugujRJ",
-        "image_url": "dataset/images/pr12.png"
+        "image_url": "static/dataset/images/pr12.png"
     },
     {
         "filename": "pr13.png",
         "product_name": "telephone",
         "product_url": "https://amzn.in/d/3AOCWVL",
-        "image_url": "dataset/images/pr13.png"
+        "image_url": "static/dataset/images/pr13.png"
     },
     {
         "filename": "pr14.png",
         "product_name": "telephone",
         "product_url": "https://amzn.in/d/hKLAlvD",
-        "image_url": "dataset/images/pr14.png"
+        "image_url": "static/dataset/images/pr14.png"
     },
     {
         "filename": "pr15.png",
         "product_name": "telephone",
         "product_url": "https://amzn.in/d/9ugujRJ",
-        "image_url": "dataset/images/pr15.png"
+        "image_url": "static/dataset/images/pr15.png"
     },
     {
         "filename": "pr16.png",
         "product_name": "Bottle",
         "product_url": "https://amzn.in/d/3AOCWVL",
-        "image_url": "dataset/images/pr16.png"
+        "image_url": "static/dataset/images/pr16.png"
     },
     {
         "filename": "pr17.png",
         "product_name": "Bottle",
         "product_url": "https://amzn.in/d/hKLAlvD",
-        "image_url": "dataset/images/pr17.png"
+        "image_url": "static/dataset/images/pr17.png"
     },
     {
         "filename": "pr18.png",
         "product_name": "Bottle",
         "product_url": "https://amzn.in/d/9ugujRJ",
-        "image_url": "dataset/images/pr18.png"
+        "image_url": "static/dataset/images/pr18.png"
     },
     {
         "filename": "pr19.png",
         "product_name": "xerox",
         "product_url": "https://amzn.in/d/3AOCWVL",
-        "image_url": "dataset/images/pr19.png"
+        "image_url": "static/dataset/images/pr19.png"
     },
     {
         "filename": "pr20.png",
         "product_name": "xerox",
         "product_url": "https://amzn.in/d/hKLAlvD",
-        "image_url": "dataset/images/pr20.png"
+        "image_url": "static/dataset/images/pr20.png"
     },
     {
         "filename": "pr21.png",
         "product_name": "xerox",
         "product_url": "https://amzn.in/d/9ugujRJ",
-        "image_url": "dataset/images/pr21.png"
+        "image_url": "static/dataset/images/pr21.png"
     },
     {
         "filename": "pr22.png",
         "product_name": "lamp",
         "product_url": "https://amzn.in/d/3AOCWVL",
-        "image_url": "dataset/images/pr22.png"
+        "image_url": "static/dataset/images/pr22.png"
     },
     {
         "filename": "pr23.png",
         "product_name": "lamp",
         "product_url": "https://amzn.in/d/hKLAlvD",
-        "image_url": "dataset/images/pr23.png"
+        "image_url": "static/dataset/images/pr23.png"
     },
     {
         "filename": "pr24.png",
         "product_name": "lamp",
         "product_url": "https://amzn.in/d/9ugujRJ",
-        "image_url": "dataset/images/pr24.png"
+        "image_url": "static/dataset/images/pr24.png"
     },
     {
         "filename": "pr25.png",
         "product_name": "photo_frame",
         "product_url": "https://amzn.in/d/3AOCWVL",
-        "image_url": "dataset/images/pr25.png"
+        "image_url": "static/dataset/images/pr25.png"
     },
     {
         "filename": "pr26.png",
         "product_name": "photo_frame",
         "product_url": "https://amzn.in/d/hKLAlvD",
-        "image_url": "dataset/images/pr26.png"
+        "image_url": "static/dataset/images/pr26.png"
     },
     {
         "filename": "pr27.png",
         "product_name": "photo_frame",
         "product_url": "https://amzn.in/d/9ugujRJ",
-        "image_url": "dataset/images/pr27.png"
+        "image_url": "static/dataset/images/pr27.png"
     },
     {
         "filename": "pr28.png",
         "product_name": "PC",
         "product_url": "https://amzn.in/d/3AOCWVL",
-        "image_url": "dataset/images/pr28.png"
+        "image_url": "static/dataset/images/pr28.png"
     },
     {
         "filename": "pr29.png",
         "product_name": "PC",
         "product_url": "https://amzn.in/d/hKLAlvD",
-        "image_url": "dataset/images/pr29.png"
+        "image_url": "static/dataset/images/pr29.png"
     },
     {
         "filename": "pr30.png",
         "product_name": "PC",
         "product_url": "https://amzn.in/d/9ugujRJ",
-        "image_url": "dataset/images/pr30.png"
+        "image_url": "static/dataset/images/pr30.png"
     }
 
 ]
