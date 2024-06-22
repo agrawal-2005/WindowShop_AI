@@ -5,8 +5,8 @@ import base64
 from io import BytesIO
 from PIL import Image
 import cv2
-from hower_object import hower_image_similarity
-from image_similarity import process_image_similarity
+# from hower_object import hower_image_similarity
+from image_similarity import hower_image_similarity
 UPLOAD_FOLDER = 'static/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER

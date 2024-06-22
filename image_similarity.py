@@ -5,26 +5,30 @@ import json
 from PIL import Image
 from ultralytics import YOLO
 from torchvision import transforms
+import clip
 
-# Load the YOLOv8 model
-yolo_model = YOLO("yolov8n.pt")
-
-# Load DINOv2 model
+# Global variables for pre-trained models
+yolo_model = None
+clip_model = None
+clip_preprocess = None
 device = "cuda" if torch.cuda.is_available() else "cpu"
-model = timm.create_model('vit_base_patch14_dinov2', pretrained=True).to(device)
-model.eval()
 
-# Define preprocessing
-preprocess = transforms.Compose([
-    transforms.Resize((518, 518)),  # Resize to 518x518
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
+# Define preprocessing using CLIP's preprocessing
+def load_clip_model():
+    global clip_model, clip_preprocess
+    clip_model, clip_preprocess = clip.load("ViT-B/32", device=device)
+    clip_model.eval()
+
+def load_models():
+    global yolo_model, clip_model, device
+    if yolo_model is None:
+        yolo_model = YOLO("yolov8n.pt")
+    if clip_model is None:
+        load_clip_model()
 
 def detect_objects(image_path):
     try:
         results = yolo_model(image_path)
-        results[0].show()
         return results
     except Exception as e:
         print(f"Error detecting objects: {e}")
@@ -36,25 +40,27 @@ def crop_object(image, coordinates):
     return cropped_image
 
 def encode_image(image):
-    image_tensor = preprocess(image).unsqueeze(0).to(device)
+    image = clip_preprocess(image).unsqueeze(0).to(device)
     with torch.no_grad():
-        image_feature = model(image_tensor)
+        image_feature = clip_model.encode_image(image)
     return image_feature
 
-def find_similar_images(query_feature, dataset_features, top_k=3):
+def find_similar_images(query_feature, dataset_features, top_k=5):
     similarities = torch.nn.functional.cosine_similarity(query_feature, dataset_features, dim=-1)
     values, indices = similarities.topk(top_k)
     return indices, values
 
-def process_image_similarity(image_path, x_coordi, y_coordi):
-    # Load and encode dataset images
-    products = [] 
+def hower_image_similarity(image_path, x_coordi, y_coordi):
+    # Ensure models are loaded
+    load_models()
 
+    products = [] 
     dataset_folder = 'dataset'
     metadata_file = os.path.join(dataset_folder, 'metadata.json')
     with open(metadata_file, 'r') as f:
         metadata = json.load(f)
 
+    # Load and encode dataset images (this could be done once and cached)
     dataset_image_features = []
     for item in metadata:
         img_path = os.path.join(dataset_folder, 'images', item['filename'])
@@ -63,9 +69,7 @@ def process_image_similarity(image_path, x_coordi, y_coordi):
 
     dataset_image_features = torch.cat(dataset_image_features, dim=0).to(device)
 
-    # Process the input image
     results = detect_objects(image_path)
-
     if isinstance(results, list):
         results = results[0]  # Take the first detection if there are multiple
 
@@ -84,21 +88,27 @@ def process_image_similarity(image_path, x_coordi, y_coordi):
 
         for i, (area, coordinates) in enumerate(valid_boxes):
             cropped_image = crop_object(Image.open(image_path).convert("RGB"), coordinates)
-            cropped_image.show()  # Display the cropped image
-
             cropped_image_feature = encode_image(cropped_image)
+
             indices, values = find_similar_images(cropped_image_feature, dataset_image_features)
 
-            print(f"Top matches for detected object {i+1}:")
             for idx, value in zip(indices, values):
                 match = metadata[idx]
-                print(f"Match: {match['product_name']} with similarity score {value.item():.2f}, URL: {match['product_url']}")
-            print()  # Print a blank line for separation
+                product = {
+                    'name': match['product_name'],
+                    'link': match['product_url'],
+                    'image': match['image_url'],
+                    'score': value.item()
+                }
+                print(product)
+                products.append(product)
     else:
         print("No objects detected.")
+
+    return products
 
 if __name__ == "__main__":
     image_path = 'static/uploads/sample_video_29.png'
     x_coordi = 543  # Example x-coordinate
     y_coordi = 521  # Example y-coordinate
-    process_image_similarity(image_path, x_coordi, y_coordi)
+    hower_image_similarity(image_path, x_coordi, y_coordi)
