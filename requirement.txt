@@ -1,0 +1,7 @@
+torch
+yolov5
+clip-by-openai
+opencv-python
+Pillow
+flask
+flask-cors
