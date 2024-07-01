@@ -166,6 +166,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const captureButton = document.getElementById('capture-button');
     const sidebar = document.querySelector('.sidebar');
     const productList = document.getElementById('product-list');
+    const closeButton = document.getElementById('close-button');
+    const loadingMessage = document.getElementById('loading-message');
 
     captureButton.addEventListener('click', function() {
         videoPlayer.addEventListener('click', captureCoordinates);
@@ -183,6 +185,8 @@ document.addEventListener('DOMContentLoaded', function() {
             filename: videoUrl
         };
 
+        loadingMessage.style.display = 'block';
+
         fetch('/capture', {
             method: 'POST',
             headers: {
@@ -194,11 +198,16 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             console.log('Success:', data);
             populateProductList(data.products);
+            loadingMessage.style.display = 'none';
             showSidebar();
         })
         .catch(error => {
             console.error('Error:', error);
+            loadingMessage.style.display = 'none';
         });
+        // .finally(()=>{
+        
+        // });
 
         // Remove the event listener to avoid multiple captures on subsequent clicks
         videoPlayer.removeEventListener('click', captureCoordinates);
@@ -219,7 +228,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const img = document.createElement('img');
         img.src = product.image;
         img.alt = product.name;
-        img.style.width = '100px'; // Adjust the width as needed
+        img.style.width = '102px'; // Adjust the width as needed
+        img.style.height = '102px'; // Adjust the width as needed
 
         link.appendChild(img);
         listItem.appendChild(link);
@@ -230,4 +240,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function showSidebar() {
         sidebar.classList.add('show');
     }
+
+    closeButton.addEventListener('click', () => {
+        sidebar.classList.toggle('show');
+    });
 });

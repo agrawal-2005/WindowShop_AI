@@ -180,6 +180,137 @@
         "product_name": "PC",
         "product_url": "https://amzn.in/d/0emSmyLy",
         "image_url": "static/dataset/images/pr30.png"
+    },
+    {
+        "filename": "blazer1.jpg",
+        "product_name": "Blazer",
+        "product_url": "https://amzn.in/d/0hMDGBbr",
+        "image_url": "static/dataset/images/blazer1.jpg"
+    },
+    {
+        "filename": "blazer2.jpg",
+        "product_name": "Blazer",
+        "product_url": "https://amzn.in/d/0iZVbahH",
+        "image_url": "static/dataset/images/blazer2.jpg"
+    },
+    {
+        "filename": "tie1.jpg",
+        "product_name": "tie",
+        "product_url": "https://amzn.in/d/094lVMV9",
+        "image_url": "static/dataset/images/tie1.jpg"
+    },
+    {
+        "filename": "hat.jpg",
+        "product_name": "Grey Hat",
+        "product_url": "https://amzn.in/d/03HVNJxK",
+        "image_url": "static/dataset/images/hat.jpg"
+    },
+    {
+        "filename": "printedtie.jpg",
+        "product_name": "Tie",
+        "product_url": "https://amzn.in/d/08sYm7aP",
+        "image_url": "static/dataset/images/printedtie.jpg"
+    },
+    {
+        "filename": "brownsweter.jpg",
+        "product_name": "BrownSweter",
+        "product_url": "https://amzn.in/d/04wBu2vi",
+        "image_url": "static/dataset/images/brownsweter.jpg"
+    },
+    {
+        "filename": "bottom.jpg",
+        "product_name": "Women Skirt",
+        "product_url": "https://amzn.in/d/07bV538k",
+        "image_url": "static/dataset/images/bottome.jpg"
+    },
+    {
+        "filename": "halfsweater.jpg",
+        "product_name": "Sweater",
+        "product_url": "https://amzn.in/d/0frqChOY",
+        "image_url": "static/dataset/images/halfsweater.jpg"
+    },
+    {
+        "filename": "straps.jpg",
+        "product_name": "Shirts Suspender",
+        "product_url": "https://amzn.in/d/0jiubeqQ",
+        "image_url": "static/dataset/images/straps.jpg"
+    },
+    {
+        "filename": "tie2.jpg",
+        "product_name": "Tie",
+        "product_url": "https://amzn.in/d/0eUy6MZJ",
+        "image_url": "static/dataset/images/tie2.jpg"
+    },
+    {
+        "filename": "policecap.jpg",
+        "product_name": "Police Cap",
+        "product_url": "https://amzn.in/d/08v9UrLW",
+        "image_url": "static/dataset/images/policecap.jpg"
+    },
+    {
+        "filename": "chair.jpg",
+        "product_name": "Chair",
+        "product_url": "https://amzn.in/d/068O8F56",
+        "image_url": "static/dataset/images/chair.jpg"
+    },
+    {
+        "filename": "peacoat.jpg",
+        "product_name": "PeaCoat",
+        "product_url": "https://amzn.in/d/0bm8FpGH",
+        "image_url": "static/dataset/images/peacoat.jpg"
+    },
+    {
+        "filename": "womencoat.jpg",
+        "product_name": "Coat",
+        "product_url": "https://amzn.in/d/09giJtpQ",
+        "image_url": "static/dataset/images/womencoat.jpg"
+    },
+    {
+        "filename": "necklace.jpg",
+        "product_name": "Necklace",
+        "product_url": "https://amzn.in/d/01IqQ2lB",
+        "image_url": "static/dataset/images/neclace.jpg"
+    },
+    {
+        "filename": "flag.jpg",
+        "product_name": "Flag",
+        "product_url": "https://amzn.in/d/05VOSBMW",
+        "image_url": "static/dataset/images/flag.jpg"
+    },
+    {
+        "filename": "basketball.jpg",
+        "product_name": "Basketball net",
+        "product_url": "https://amzn.in/d/02aYNt0t",
+        "image_url": "static/dataset/images/basketball.jpg"
+    },
+    {
+        "filename": "walllamp.jpg",
+        "product_name": "lamp",
+        "product_url": "https://amzn.in/d/0e4jRPeS",
+        "image_url": "static/dataset/images/walllamp.jpg"
+    },
+    {
+        "filename": "rope.jpg",
+        "product_name": "Rope",
+        "product_url": "https://amzn.in/d/018haEdX",
+        "image_url": "static/dataset/images/rope.jpg"
+    },
+    {
+        "filename": "coat.jpg",
+        "product_name": "Coat",
+        "product_url": "https://amzn.in/d/09FueGFa",
+        "image_url": "static/dataset/images/coat.jpg"
+    },
+    {
+        "filename": "lamp.jpg",
+        "product_name": "Lamp",
+        "product_url": "https://amzn.in/d/09FueGFa",
+        "image_url": "static/dataset/images/lamp.jpg"
+    },
+    {
+        "filename": "womendress.jpg",
+        "product_name": "Women Green Shirts",
+        "product_url": "https://amzn.in/d/0c2P0Ncg",
+        "image_url": "static/dataset/images/womendress.jpg"
     }
-
 ]
