@@ -1,30 +1,33 @@
 /* Import Google font - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 body {
   min-height: 100vh;
   background: black;
 }
-body, .container, .video-controls, .video-timer, .options {
+body,
+.container,
+.video-controls,
+.video-timer,
+.options {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .button-64 {
-
   align-items: center;
-  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
   border: 0;
   border-radius: 8px;
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   font-family: Phantomsans, sans-serif;
   font-size: 5px;
@@ -72,14 +75,14 @@ body, .container, .video-controls, .video-timer, .options {
   gap: 10px; /* Space between the video container and sidebar */
 }
 .container {
-  left:70px;
-  top:5%;
+  left: 70px;
+  top: 5%;
   border-radius: 25px;
   border-color: white;
   border-style: solid;
   width: 100%;
   user-select: none;
-  overflow:hidden;
+  overflow: hidden;
   max-width: 900px; /* Increased max-width to make the video larger */
   border-radius: 5px;
   background: #000;
@@ -153,7 +156,8 @@ body, .container, .video-controls, .video-timer, .options {
   background: #2289ff;
   transform: translateY(-50%);
 }
-.progress-bar::before, .progress-area span {
+.progress-bar::before,
+.progress-area span {
   display: none;
 }
 .video-timeline:hover .progress-bar::before,
@@ -201,7 +205,7 @@ body, .container, .video-controls, .video-timer, .options {
   height: 4px;
   margin-left: 3px;
   max-width: 75px;
-  accent-color: #0078FF;
+  accent-color: #0078ff;
 }
 .options .video-timer {
   color: #efefef;
@@ -266,28 +270,28 @@ body, .container, .video-controls, .video-timer, .options {
   /* align-items:last baseline; */
   position: absolute;
   bottom: 50px; /* Adjust the value to control the distance from the bottom */
-  right: 400px; 
+  right: 400px;
   margin: 5px;
 }
-#play-existing-video{
+#play-existing-video {
   position: absolute;
   bottom: 50px; /* Adjust the value to control the distance from the bottom */
-  right: 800px; 
+  right: 800px;
   margin: 5px;
 }
-#upload-form{
+#upload-form {
   position: absolute;
   bottom: 50px; /* Adjust the value to control the distance from the bottom */
-  left: 20px; 
+  left: 20px;
   margin: 5px;
 }
-
 
 @media screen and (max-width: 540px) {
   .wrapper .video-controls {
     padding: 3px 10px 7px;
   }
-  .options input, .progress-area span {
+  .options input,
+  .progress-area span {
     display: none !important;
   }
   .options button {
@@ -308,7 +312,9 @@ body, .container, .video-controls, .video-timer, .options {
   .options button span {
     font-size: 21px;
   }
-  .options .video-timer, .progress-area span, .speed-options li {
+  .options .video-timer,
+  .progress-area span,
+  .speed-options li {
     font-size: 12px;
   }
   .playback-content .speed-options {
@@ -327,13 +333,13 @@ body, .container, .video-controls, .video-timer, .options {
 .sidebar {
   display: none; /* Initially hide the sidebar */
   flex-direction: column;
-  align-items:center;
+  align-items: center;
   gap: 90px;
   /* Add positioning and styling for the sidebar */
-  height: 510px;
+  height: 500px;
   position: absolute;
-  top: 41%;
-  right: 150px;
+  top: 37%;
+  right: 240px;
   transform: translateY(-50%);
   background-color: rgba(255, 255, 255, 0.8);
   padding: 10px;
@@ -343,4 +349,37 @@ body, .container, .video-controls, .video-timer, .options {
 
 .sidebar.show {
   display: flex; /* Show the sidebar when the "show" class is added */
+}
+
+#product-list {
+  list-style-type: none; /* Removes the list markers */
+  padding-left: 0; /* Removes default padding */
+}
+
+#product-list li {
+  margin-bottom: 10px; /* Adds some space between list items */
+}
+
+#close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#uploading-message {
+  color: white;
+}
+
+#loading-message {
+  display: none;
+  color: white;
+  font-size: 16px;
+  margin-top: 10px;
+  position: absolute;
+  top: 41%;
+  right: 190px;
 }

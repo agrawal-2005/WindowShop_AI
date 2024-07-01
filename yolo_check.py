@@ -1,10 +1,44 @@
 # from image_similarity import detect_objects
 # from PIL import Image
-# imtage = 'static/uploads/sample_video_49.png'
-# img=detect_objects(imtage)
+
+# # Example usage
+
+# image = 'static/uploads/sample2_96.png'
+# show_image(image)
+# img=detect_objects(image)
 # img[0].show()
-import timm
-print(timm.list_models("*dino*"))
+
+from image_similarity import detect_objects  # Ensure this is the correct import for your YOLO model
+from PIL import Image
+
+def show_image(image_path):
+    """
+    Display an image using PIL/Pillow.
+
+    :param image_path: Path to the image file.
+    """
+    try:
+        # Open the image file
+        with Image.open(image_path) as img:
+            # Display the image
+            img.show()
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+# Example usage
+if __name__ == "__main__":
+    image_path = 'static/uploads/sample2_96.png'
+    show_image(image_path)
+
+    detection_results = detect_objects(image_path)
+    if detection_results is not None and len(detection_results) > 0:
+        detection_results[0].show()
+    else:
+        print("No objects detected or an error occurred.")
+
+
+# import timm
+# print(timm.list_models("*dino*"))
 #     {
 #         "filename": "pr31.png",
 #         "product_name": "Sunglasses",
