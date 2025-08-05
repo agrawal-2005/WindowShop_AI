@@ -1,6 +1,4 @@
-# WindowShop_AI
-
-# 🛍️ WindowShop.ai
+# 🛍️ WindowShop_AI
 
 **An AI-powered product search engine for video content**  
 Built during **HackOn with Amazon 4.0**

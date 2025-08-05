@@ -1,7 +1,7 @@
-torch
-yolov5
-clip-by-openai
-opencv-python
-Pillow
-flask
-flask-cors
+torch>=2.0
+ultralytics>=8.0
+opencv-python>=4.8.0
+Pillow>=10.0
+flask>=2.3
+flask-cors>=3.0
+git+https://github.com/openai/CLIP.git
