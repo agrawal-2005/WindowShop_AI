@@ -127,4 +127,6 @@ def capture():
     }), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # This is now only for local development if you run 'python3 app.py'
+    # The production server will ignore this block.
+    app.run(host='0.0.0.0', port=5000)
