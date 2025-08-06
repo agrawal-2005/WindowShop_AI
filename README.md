@@ -52,27 +52,27 @@ The application follows a simple yet powerful workflow:
 
 WindowShop_AI/
 │
-├── app.py                      # Main Flask application
-├── image_similarity.py         # Core AI logic (YOLO + CLIP)
-├── yolov8n.pt                  # Pre-trained YOLO model weights
+├── app.py                      # Flask app and route handling
+├── image_similarity.py         # Object detection + CLIP encoding logic
+├── yolov8n.pt                  # Pretrained YOLOv8 model weights
 ├── requirements.txt            # Python dependencies
+├── README.md                   # Project documentation
 ├── LICENSE
-└── README.md
 │
 ├── static/
-│   ├── css/
+│   ├── css/                    # Custom styles
 │   │   └── style.css
-│   ├── js/
+│   ├── js/                     # JS logic for video interaction
 │   │   └── script.js
-│   ├── images/                 # Logos and UI images
-│   ├── uploads/                # Folder for user-uploaded videos & extracted frames
+│   ├── images/                 # UI/branding assets
+│   ├── uploads/                # Uploaded videos / extracted frames
 │   └── dataset/
-│       ├── images/             # Product images for the dataset
-│       ├── metadata.json       # Product information
-│       └── features.pt         # (Auto-generated) Cached features for fast search
+│       ├── images/             # Product catalog images
+│       ├── metadata.json       # Product details (name, image URL, etc.)
+│       └── features.pt         # Cached feature vectors (auto-generated)
 │
 └── templates/
-└── index.html              # Main HTML page
+    └── index.html              # Main web interface
 
 
 ---
