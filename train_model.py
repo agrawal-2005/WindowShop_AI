@@ -5,7 +5,9 @@ import json
 from PIL import Image
 from ultralytics import YOLO
 from torchvision import transforms
+
 device = "cuda" if torch.cuda.is_available() else "cpu"
+# It downloads and loads the pre-trained DINOv2 model from the internet just once.
 model = timm.create_model('vit_base_patch14_dinov2', pretrained=True).to(device)
 model.eval()
 

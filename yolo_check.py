@@ -27,7 +27,7 @@ def show_image(image_path):
 
 # Example usage
 if __name__ == "__main__":
-    image_path = 'static/uploads/sample2_96.png'
+    image_path = 'static/uploads/Program_Development/frame_0.png'
     show_image(image_path)
 
     detection_results = detect_objects(image_path)
