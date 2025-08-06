@@ -47,13 +47,33 @@ The application follows a simple yet powerful workflow:
 
 ---
 
-## 📊 Results
+## 📂 Project Structure
 
-| Metric                  | Value         |
-| ----------------------- | ------------- |
-| Click-Through Rate      | 85%+ (Demo)   |
-| Mean Detection Accuracy | 92%           |
-| Product Mapping Support | 500+ Products |
+
+WindowShop_AI/
+│
+├── app.py                      # Main Flask application
+├── image_similarity.py         # Core AI logic (YOLO + CLIP)
+├── yolov8n.pt                  # Pre-trained YOLO model weights
+├── requirements.txt            # Python dependencies
+├── LICENSE
+└── README.md
+│
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── script.js
+│   ├── images/                 # Logos and UI images
+│   ├── uploads/                # Folder for user-uploaded videos & extracted frames
+│   └── dataset/
+│       ├── images/             # Product images for the dataset
+│       ├── metadata.json       # Product information
+│       └── features.pt         # (Auto-generated) Cached features for fast search
+│
+└── templates/
+└── index.html              # Main HTML page
+
 
 ---
 
@@ -63,7 +83,7 @@ To run this project on your local machine, follow these steps:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/agrawal-2005/WindowShop_AI.git](https://github.com/agrawal-2005/WindowShop_AI.git)
+    git clone https://github.com/agrawal-2005/WindowShop_AI.git
     cd WindowShop_AI
     ```
 
