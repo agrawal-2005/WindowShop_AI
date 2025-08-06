@@ -18,9 +18,15 @@
     <img src="{{ url_for('static', filename='images/amazon-hackon.png') }}" alt="Hackon Logo" class="logo hackon">
     <img src="{{ url_for('static', filename='images/amazon-logo.png') }}" alt="Amazon Logo" class="logo amazon">
   </div>
-
+  
   <div class="main-container">
     <div class="container">
+      <!-- MOVED AND UPDATED MESSAGES -->
+      <div id="loading-overlay">
+        <div class="spinner"></div>
+        <div id="loading-text"></div>
+      </div>
+
       <div class="wrapper">
         <div class="video-timeline">
           <div class="progress-area">
@@ -71,13 +77,9 @@
             <button type="submit" class="button-64" role="button"><span class="text">Upload</span></button>
         </form>
         <button id="play-existing-video" class="button-64" role="button"><span class="text">Play Video</span></button>
-        <!-- NEW BUTTON -->
         <button id="next-video" class="button-64" role="button"><span class="text">Next Video</span></button>
         <button id="capture-button" class="button-64" role="button"><span class="text">Select Products</span></button>
     </div>
-
-    <div id="uploading-message" style="display: none;">Uploading your video, please wait..</div>
-    <div id="loading-message" style="display: none;">Fetching products, please wait...</div>
   </div>
 
   <div class="sidebar">

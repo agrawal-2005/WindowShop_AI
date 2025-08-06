@@ -15,10 +15,24 @@ const container = document.querySelector(".container"),
   fullScreenBtn = container.querySelector(".fullscreen i");
 let timer;
 
-// --- NEW: Playlist variables ---
+// --- Playlist variables ---
 let videoPlaylist = [];
 let currentVideoIndex = 0;
 let currentVideoUrl = ''; // Keep track of the current video's URL for capturing
+
+// --- Loading Overlay Elements ---
+const loadingOverlay = document.getElementById('loading-overlay');
+const loadingText = document.getElementById('loading-text');
+
+// --- Helper function to show/hide the loading overlay ---
+function showLoading(message) {
+  loadingText.textContent = message;
+  loadingOverlay.classList.add('show');
+}
+
+function hideLoading() {
+  loadingOverlay.classList.remove('show');
+}
 
 const hideControls = () => {
     if(mainVideo.paused) return;
@@ -75,7 +89,6 @@ mainVideo.addEventListener("loadeddata", () => {
     videoDuration.innerText = formatTime(mainVideo.duration);
 });
 
-// --- NEW: Automatically play next video when one ends ---
 mainVideo.addEventListener('ended', playNextVideo);
 
 const draggableProgressBar = e => {
@@ -140,7 +153,7 @@ document.addEventListener("mouseup", () => videoTimeline.removeEventListener("mo
 
 document.getElementById('upload-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    document.getElementById('uploading-message').style.display = 'block';
+    showLoading('Uploading your video, please wait...');
 
     const formData = new FormData();
     formData.append('video', document.getElementById('video').files[0]);
@@ -151,18 +164,17 @@ document.getElementById('upload-form').addEventListener('submit', function(e) {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('uploading-message').style.display = 'none';
+        hideLoading();
         console.log('Upload successful:', data.video_url);
-        // After upload, refresh the playlist and play the new video
         fetchAndLoadVideos(data.video_url);
     })
     .catch(error => {
         console.error('Error:', error);
-        document.getElementById('uploading-message').style.display = 'none';
+        hideLoading();
+        alert('Upload failed. Please try again.');
     });
 });
 
-// --- MODIFIED: This button now just plays the currently selected video ---
 document.getElementById('play-existing-video').addEventListener('click', function() {
     if (mainVideo.paused) {
         mainVideo.play();
@@ -171,25 +183,23 @@ document.getElementById('play-existing-video').addEventListener('click', functio
     }
 });
 
-// --- NEW: Playlist and video loading logic ---
 function loadVideo(videoUrl) {
     if (!videoUrl) return;
     const videoSource = document.getElementById('video-source');
     videoSource.src = videoUrl;
-    currentVideoUrl = videoUrl; // Update the global URL for the capture function
+    currentVideoUrl = videoUrl;
     mainVideo.load();
-    mainVideo.play();
+    // We don't autoplay here to respect browser policies. User clicks play.
 }
 
 function playNextVideo() {
     if (videoPlaylist.length === 0) return;
-    // Move to the next video, or loop to the first one
     currentVideoIndex = (currentVideoIndex + 1) % videoPlaylist.length;
     const nextVideoUrl = videoPlaylist[currentVideoIndex];
     loadVideo(nextVideoUrl);
+    mainVideo.play(); // Autoplay the next video in the sequence
 }
 
-// --- NEW: Add event listener for the "Next Video" button ---
 document.getElementById('next-video').addEventListener('click', playNextVideo);
 
 async function fetchAndLoadVideos(playThisUrlAfterwards = null) {
@@ -199,7 +209,6 @@ async function fetchAndLoadVideos(playThisUrlAfterwards = null) {
 
         if (videoPlaylist.length > 0) {
             if (playThisUrlAfterwards) {
-                // Find the index of the newly uploaded video
                 const newVideoIndex = videoPlaylist.findIndex(url => url === playThisUrlAfterwards);
                 currentVideoIndex = newVideoIndex !== -1 ? newVideoIndex : 0;
             }
@@ -212,9 +221,7 @@ async function fetchAndLoadVideos(playThisUrlAfterwards = null) {
     }
 }
 
-
 document.addEventListener('DOMContentLoaded', function() {
-    // --- NEW: Fetch the list of videos when the page loads ---
     fetchAndLoadVideos();
 
     const videoPlayer = document.getElementById('video-player');
@@ -222,7 +229,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.querySelector('.sidebar');
     const productList = document.getElementById('product-list');
     const closeButton = document.getElementById('close-button');
-    const loadingMessage = document.getElementById('loading-message');
 
     captureButton.addEventListener('click', function() {
         document.body.style.cursor = 'crosshair';
@@ -239,10 +245,10 @@ document.addEventListener('DOMContentLoaded', function() {
             x: x,
             y: y,
             timestamp: timestamp,
-            filename: currentVideoUrl // Use the globally tracked URL
+            filename: currentVideoUrl
         };
 
-        loadingMessage.style.display = 'block';
+        showLoading('Fetching similar products...');
 
         fetch('/capture', {
             method: 'POST',
@@ -255,12 +261,13 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             console.log('Success:', data);
             populateProductList(data.products);
-            loadingMessage.style.display = 'none';
+            hideLoading();
             showSidebar();
         })
         .catch(error => {
             console.error('Error:', error);
-            loadingMessage.style.display = 'none';
+            hideLoading();
+            alert('Could not find products. Please try again.');
         });
     }
 
