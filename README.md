@@ -63,8 +63,8 @@ To run this project on your local machine, follow these steps:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/your-username/your-repository-name.git](https://github.com/your-username/your-repository-name.git)
-    cd your-repository-name
+    git clone [https://github.com/agrawal-2005/WindowShop_AI.git](https://github.com/agrawal-2005/WindowShop_AI.git)
+    cd WindowShop_AI
     ```
 
 2.  **Create a Virtual Environment:**
@@ -105,12 +105,6 @@ To run this project on your local machine, follow these steps:
 
 ---
 
-## 🤝 Contributors
-
--   **Prashant Agrawal** – Backend & AI Integration
-
----
-
 ## 💡 Inspiration
 
 Built for [HackOn with Amazon 4.0](https://unstop.com/hackathons/hackon-with-amazon-40-amazon-882309), this project explores the future of **interactive video commerce**, combining real-time AI with intuitive user experiences.
@@ -127,11 +121,10 @@ Built for [HackOn with Amazon 4.0](https://unstop.com/hackathons/hackon-with-ama
 
 ## 📸 Demo Preview
 
-*(Add a few screenshots or a demo GIF here if available)*
+![WindowShop AI Demo](/Prototype.png)
 
 ---
 
 ## 📎 License
 
 MIT License. See the [`LICENSE`](./LICENSE) file for details.
-
