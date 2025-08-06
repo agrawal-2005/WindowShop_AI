@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="utf-8">
-  <title>Product detection</title>
-  <link rel="stylesheet" href="../static/css/style.css">
+  <title>Product Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- These 3 links are only for icons -->
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
 </head>
+
 <body>
+  <div class="branding">
+    <img src="{{ url_for('static', filename='images/amazon-hackon.png') }}" alt="Hackon Logo" class="logo hackon">
+    <img src="{{ url_for('static', filename='images/amazon-logo.png') }}" alt="Amazon Logo" class="logo amazon">
+  </div>
+
   <div class="main-container">
-    <div class="container show-controls">
+    <div class="container">
       <div class="wrapper">
         <div class="video-timeline">
           <div class="progress-area">
@@ -54,28 +59,32 @@
           </li>
         </ul>
       </div>
-    
-      <div class="video-container">
-        <video id="video-player" >
-          <source id="video-source" src="" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      <video id="video-player">
+        <source id="video-source" src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
-  
-      <form id="upload-form">
-        <input type="file" id="video" name="video" accept="video/*" required>
-        <div id="uploading-message" style="display: none;">Uploading your video, please wait..</div>
-        <button type="submit" class="button-64" role="button"><span class="text">Upload</span></button>
-      </form>
-      <button id="play-existing-video" class="button-64" role="button"><span class="text">Play Video</span></button>
-      <div class="sidebar">
-        <button id="close-button">&times</button>
-        <ul id="product-list"></ul>
-      </div>
-      <button id="capture-button" class="button-64" role="button"><span class="text">Select Products</span></button>
-      <div id="loading-message" style="display: none;">Fetching products, please wait...</div>
+
+    <div class="action-buttons">
+        <form id="upload-form">
+            <input type="file" id="video" name="video" accept="video/*" required>
+            <button type="submit" class="button-64" role="button"><span class="text">Upload</span></button>
+        </form>
+        <button id="play-existing-video" class="button-64" role="button"><span class="text">Play Video</span></button>
+        <!-- NEW BUTTON -->
+        <button id="next-video" class="button-64" role="button"><span class="text">Next Video</span></button>
+        <button id="capture-button" class="button-64" role="button"><span class="text">Select Products</span></button>
+    </div>
+
+    <div id="uploading-message" style="display: none;">Uploading your video, please wait..</div>
+    <div id="loading-message" style="display: none;">Fetching products, please wait...</div>
   </div>
-  <script src="../static/js/script.js"></script>
+
+  <div class="sidebar">
+    <button id="close-button">&times;</button>
+    <ul id="product-list"></ul>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

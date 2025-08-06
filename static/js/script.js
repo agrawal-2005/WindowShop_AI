@@ -1,19 +1,24 @@
 const container = document.querySelector(".container"),
-mainVideo = container.querySelector("video"),
-videoTimeline = container.querySelector(".video-timeline"),
-progressBar = container.querySelector(".progress-bar"),
-volumeBtn = container.querySelector(".volume i"),
-volumeSlider = container.querySelector(".left input");
-currentVidTime = container.querySelector(".current-time"),
-videoDuration = container.querySelector(".video-duration"),
-skipBackward = container.querySelector(".skip-backward i"),
-skipForward = container.querySelector(".skip-forward i"),
-playPauseBtn = container.querySelector(".play-pause i"),
-speedBtn = container.querySelector(".playback-speed span"),
-speedOptions = container.querySelector(".speed-options"),
-pipBtn = container.querySelector(".pic-in-pic span"),
-fullScreenBtn = container.querySelector(".fullscreen i");
+  mainVideo = container.querySelector("video"),
+  videoTimeline = container.querySelector(".video-timeline"),
+  progressBar = container.querySelector(".progress-bar"),
+  volumeBtn = container.querySelector(".volume i"),
+  volumeSlider = container.querySelector(".left input[type='range']");
+  currentVidTime = container.querySelector(".current-time"),
+  videoDuration = container.querySelector(".video-duration"),
+  skipBackward = container.querySelector(".skip-backward i"),
+  skipForward = container.querySelector(".skip-forward i"),
+  playPauseBtn = container.querySelector(".play-pause i"),
+  speedBtn = container.querySelector(".playback-speed span"),
+  speedOptions = container.querySelector(".speed-options"),
+  pipBtn = container.querySelector(".pic-in-pic span"),
+  fullScreenBtn = container.querySelector(".fullscreen i");
 let timer;
+
+// --- NEW: Playlist variables ---
+let videoPlaylist = [];
+let currentVideoIndex = 0;
+let currentVideoUrl = ''; // Keep track of the current video's URL for capturing
 
 const hideControls = () => {
     if(mainVideo.paused) return;
@@ -69,6 +74,9 @@ mainVideo.addEventListener("timeupdate", e => {
 mainVideo.addEventListener("loadeddata", () => {
     videoDuration.innerText = formatTime(mainVideo.duration);
 });
+
+// --- NEW: Automatically play next video when one ends ---
+mainVideo.addEventListener('ended', playNextVideo);
 
 const draggableProgressBar = e => {
     let timelineWidth = videoTimeline.clientWidth;
@@ -130,22 +138,23 @@ playPauseBtn.addEventListener("click", () => mainVideo.paused ? mainVideo.play()
 videoTimeline.addEventListener("mousedown", () => videoTimeline.addEventListener("mousemove", draggableProgressBar));
 document.addEventListener("mouseup", () => videoTimeline.removeEventListener("mousemove", draggableProgressBar));
 
-
-let videoUrl = 'static/uploads/sample_video.mp4';
-document.getElementById('upload-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+document.getElementById('upload-form').addEventListener('submit', function(e) {
+    e.preventDefault();
     document.getElementById('uploading-message').style.display = 'block';
+
     const formData = new FormData();
     formData.append('video', document.getElementById('video').files[0]);
+
     fetch('/upload', {
         method: 'POST',
         body: formData
     })
     .then(response => response.json())
     .then(data => {
-        videoUrl = data.video_url;
         document.getElementById('uploading-message').style.display = 'none';
-        console.log('Upload successful:', videoUrl);
+        console.log('Upload successful:', data.video_url);
+        // After upload, refresh the playlist and play the new video
+        fetchAndLoadVideos(data.video_url);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -153,15 +162,61 @@ document.getElementById('upload-form').addEventListener('submit', function(event
     });
 });
 
-
+// --- MODIFIED: This button now just plays the currently selected video ---
 document.getElementById('play-existing-video').addEventListener('click', function() {
-    console.log(videoUrl)
-    document.getElementById('video-source').src = videoUrl;
-    document.getElementById('video-player').load();
+    if (mainVideo.paused) {
+        mainVideo.play();
+    } else {
+        mainVideo.pause();
+    }
 });
+
+// --- NEW: Playlist and video loading logic ---
+function loadVideo(videoUrl) {
+    if (!videoUrl) return;
+    const videoSource = document.getElementById('video-source');
+    videoSource.src = videoUrl;
+    currentVideoUrl = videoUrl; // Update the global URL for the capture function
+    mainVideo.load();
+    mainVideo.play();
+}
+
+function playNextVideo() {
+    if (videoPlaylist.length === 0) return;
+    // Move to the next video, or loop to the first one
+    currentVideoIndex = (currentVideoIndex + 1) % videoPlaylist.length;
+    const nextVideoUrl = videoPlaylist[currentVideoIndex];
+    loadVideo(nextVideoUrl);
+}
+
+// --- NEW: Add event listener for the "Next Video" button ---
+document.getElementById('next-video').addEventListener('click', playNextVideo);
+
+async function fetchAndLoadVideos(playThisUrlAfterwards = null) {
+    try {
+        const response = await fetch('/get_videos');
+        videoPlaylist = await response.json();
+
+        if (videoPlaylist.length > 0) {
+            if (playThisUrlAfterwards) {
+                // Find the index of the newly uploaded video
+                const newVideoIndex = videoPlaylist.findIndex(url => url === playThisUrlAfterwards);
+                currentVideoIndex = newVideoIndex !== -1 ? newVideoIndex : 0;
+            }
+            loadVideo(videoPlaylist[currentVideoIndex]);
+        } else {
+            console.log("No videos found in the uploads folder.");
+        }
+    } catch (error) {
+        console.error('Error fetching video list:', error);
+    }
+}
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    // --- NEW: Fetch the list of videos when the page loads ---
+    fetchAndLoadVideos();
+
     const videoPlayer = document.getElementById('video-player');
     const captureButton = document.getElementById('capture-button');
     const sidebar = document.querySelector('.sidebar');
@@ -170,10 +225,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingMessage = document.getElementById('loading-message');
 
     captureButton.addEventListener('click', function() {
-        videoPlayer.addEventListener('click', captureCoordinates);
+        document.body.style.cursor = 'crosshair';
+        videoPlayer.addEventListener('click', captureCoordinates, { once: true });
     });
 
     function captureCoordinates(event) {
+        document.body.style.cursor = 'default';
         const rect = videoPlayer.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
@@ -182,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
             x: x,
             y: y,
             timestamp: timestamp,
-            filename: videoUrl
+            filename: currentVideoUrl // Use the globally tracked URL
         };
 
         loadingMessage.style.display = 'block';
@@ -205,43 +262,41 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
             loadingMessage.style.display = 'none';
         });
-        // .finally(()=>{
-        
-        // });
-
-        // Remove the event listener to avoid multiple captures on subsequent clicks
-        videoPlayer.removeEventListener('click', captureCoordinates);
     }
 
     function populateProductList(products) {
-        productList.innerHTML = ''; // Clear existing product list
+        productList.innerHTML = '';
 
-    // Loop through only the first 4 items or fewer if products.length < 4
-    for (let i = 0; i < Math.min(4, products.length); i++) {
-        const product = products[i];
+        if (!products || products.length === 0) {
+            productList.innerHTML = '<li>No products found.</li>';
+            return;
+        }
 
-        const listItem = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = product.link;
-        link.target = '_blank'; // Open links in a new tab or window
+        const productsToShow = products.slice(0, 4);
 
-        const img = document.createElement('img');
-        img.src = product.image;
-        img.alt = product.name;
-        img.style.width = '102px'; // Adjust the width as needed
-        img.style.height = '102px'; // Adjust the width as needed
+        productsToShow.forEach(product => {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = product.link;
+            link.target = '_blank';
 
-        link.appendChild(img);
-        listItem.appendChild(link);
-        productList.appendChild(listItem);
+            const img = document.createElement('img');
+            img.src = product.image;
+            img.alt = product.name;
+
+            link.appendChild(img);
+            listItem.appendChild(link);
+            productList.appendChild(listItem);
+        });
     }
-}
 
     function showSidebar() {
         sidebar.classList.add('show');
     }
 
-    closeButton.addEventListener('click', () => {
-        sidebar.classList.toggle('show');
-    });
+    function hideSidebar() {
+        sidebar.classList.remove('show');
+    }
+
+    closeButton.addEventListener('click', hideSidebar);
 });
