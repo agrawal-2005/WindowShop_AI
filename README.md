@@ -48,8 +48,7 @@ The application follows a simple yet powerful workflow:
 ---
 
 ## 📂 Project Structure
-
-
+```
 WindowShop_AI/
 │
 ├── app.py                      # Flask app and route handling
@@ -73,8 +72,7 @@ WindowShop_AI/
 │
 └── templates/
     └── index.html              # Main web interface
-
-
+```
 ---
 
 ## 🛠️ Local Setup and Installation
